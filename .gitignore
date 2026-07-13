@@ -8,7 +8,6 @@
 !tools/
 !dist/
 dist/*
-!dist/install.bat
 !dist/readme.txt
 __pycache__/
 *.pyc

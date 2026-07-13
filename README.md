@@ -16,23 +16,24 @@ it:
 
 ## Installing the patch
 
-Grab the released zip (see the releases/pinned links), then either run
-`install.bat` from the game folder, or manually drop **one** `HENPRI.pfs.080`
-next to `HENPRI.exe`:
+Grab the released zip (see the pinned links), then copy **one** file into
+the game folder, next to `HENPRI.exe`:
 
-| Your setup | File to use |
+| Your setup | File to copy |
 |---|---|
-| Plain western release (GOG/Steam, v1.0.2) | `official/HENPRI.pfs.080` |
-| With the Translation Improvement Patch (`HENPRI.pfs.069`) | `hip/HENPRI.pfs.080` |
+| Plain western release (GOG/Steam, v1.0.2) | `HENPRI.pfs.080` |
+| With the Translation Improvement Patch (`HENPRI.pfs.069`) | `HENPRI.pfs.081` |
 
-Uninstall: delete `HENPRI.pfs.080`. Saves are unaffected.
+Uninstall: delete the file again. Saves are unaffected.
 
 **Why two builds?** The Artemis engine overrides *whole files*, and script
 files carry every language's text together — so any patch necessarily ships
-an English text base along with the Japanese. Each build matches one English
-base. If you add/remove the Improvement Patch later, swap builds (or re-run
-`install.bat`). If you use another script patch this project doesn't know
-about, open an issue — a compatible build is easy to make.
+an English text base along with the Japanese. `.080` carries the official
+English, `.081` carries the Improvement Patch's English. You can even
+install both: `.081` wins while present, so deleting/restoring it switches
+your English translation (the Japanese is identical in both). If you use
+another script patch this project doesn't know about, open an issue — a
+compatible build is easy to make.
 
 ## This repository
 
@@ -53,8 +54,8 @@ Requirements:
 python tools/build_all.py <WESTERN_GAME_DIR> <JP_GAME_DIR>
 ```
 
-Outputs `dist/official/HENPRI.pfs.080` and (if `HENPRI.pfs.069` is present in
-the western folder) `dist/hip/HENPRI.pfs.080`. The build is deterministic —
+Outputs `dist/HENPRI.pfs.080` and (if `HENPRI.pfs.069` is present in the
+western folder) `dist/HENPRI.pfs.081`. The build is deterministic —
 identical inputs produce byte-identical patches.
 
 ### How it works (short version)
@@ -79,7 +80,7 @@ identical inputs produce byte-identical patches.
 Patch by **That-Ruben**. Game © Qruppo / Shiravune — buy both releases;
 this patch is useless without them, by design.
 
-The `hip` build exists for compatibility with the
+The `.081` build exists for compatibility with the
 [Improvement/Delocalization Patch](https://www.reddit.com/r/visualnovels/comments/1uqz332/henpri_hentai_prison_improvement_delocalization)
 by **Y0Σ1Δ**, and carries that patch's English text (credit for that text is
 theirs).

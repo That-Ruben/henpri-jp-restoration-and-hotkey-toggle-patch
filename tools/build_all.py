@@ -10,9 +10,9 @@ Usage:
 
 The script creates directory junctions HENPRI/ and HENPRI_JP/ next to
 tools/ (the layout the individual tools expect), extracts what it needs
-into analysis/, and writes dist/official/HENPRI.pfs.080 and
-dist/hip/HENPRI.pfs.080 (the latter only if the western folder contains
-the Translation Improvement Patch, HENPRI.pfs.069).
+into analysis/, and writes dist/HENPRI.pfs.080 (official English base) and
+dist/HENPRI.pfs.081 (Improvement Patch English base; built only if the
+western folder contains HENPRI.pfs.069).
 """
 import os
 import subprocess
@@ -70,10 +70,12 @@ def main(west, jp):
     run(os.path.join(TOOLS, "edit_keyboard.py"))
 
     # 4. per-variant scripts + tbls + build
-    variants = [("official", "extracted_060")]
+    # (variant, base extract, output suffix): .080 official EN, .081 the
+    # Improvement Patch's EN
+    variants = [("official", "extracted_060", "080")]
     if hip:
-        variants.append(("hip", "extracted_069"))
-    for name, base in variants:
+        variants.append(("hip", "extracted_069", "081"))
+    for name, base, suffix in variants:
         inj = f"analysis/jp_inject_{name}/script"
         tbl = f"analysis/patched_tbl_{name}"
         sysd = f"analysis/patched_sys_{name}"
@@ -90,10 +92,9 @@ def main(west, jp):
                 f"{tbl}/list_windows_{lang}.tbl")
         run(os.path.join(TOOLS, "patch_system.py"), base,
             os.path.basename(sysd))
-        out = os.path.join(ROOT, "dist", name)
-        os.makedirs(out, exist_ok=True)
+        os.makedirs(os.path.join(ROOT, "dist"), exist_ok=True)
         run(os.path.join(TOOLS, "build_patch.py"), inj,
-            f"dist/{name}/HENPRI.pfs.080", tbl, sysd)
+            f"dist/HENPRI.pfs.{suffix}", tbl, sysd)
     print("\nDone. Patches in dist/.")
 
 
