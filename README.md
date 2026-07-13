@@ -19,16 +19,14 @@ it:
 Grab the released zip (see the pinned links), then copy **one** file into
 the game folder, next to `HENPRI.exe`:
 
-| Your setup | File to copy |
-|---|---|
-| Plain western release (GOG/Steam, v1.0.2) | `HENPRI.pfs.080` |
-| With the Translation Improvement Patch (`HENPRI.pfs.069`) | `HENPRI.pfs.081` |
+- `HENPRI.pfs.080` — the standard version.
+- `HENPRI.pfs.081` — alternate version for players of the fan-made
+  [Improvement/Delocalization Patch](https://www.reddit.com/r/visualnovels/comments/1uqz332/henpri_hentai_prison_improvement_delocalization)
+  by **Y0Σ1Δ** (`HENPRI.pfs.069`): keeps that patch's English text (credit
+  for that text is theirs).
 
-The [Improvement/Delocalization Patch](https://www.reddit.com/r/visualnovels/comments/1uqz332/henpri_hentai_prison_improvement_delocalization)
-is by **Y0Σ1Δ** — the `.081` build exists for compatibility with it and
-carries that patch's English text; credit for that text is theirs.
-
-Uninstall: delete the file again. Saves are unaffected.
+Works with the Steam, GOG and JAST versions (on Steam, install the free
+adult patch first). Uninstall: delete the file again. Saves are unaffected.
 
 **Why two builds?** The Artemis engine overrides *whole files*, and script
 files carry every language's text together — so any patch necessarily ships
