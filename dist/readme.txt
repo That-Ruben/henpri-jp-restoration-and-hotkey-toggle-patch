@@ -25,7 +25,7 @@ Copy ONE file into the game folder (next to HENPRI.exe):
                     (HENPRI.pfs.069) installed; this build keeps its
                     improved English text
 
-(The Improvement/Delocalization Patch is by Y0(Sigma)1(Delta); the .081
+(The Improvement/Delocalization Patch is by Y0Σ1Δ; the .081
 build exists for compatibility with it and carries that patch's English
 text - credit for that text is theirs.)
 
