@@ -24,7 +24,7 @@ Copy ONE file into the game folder (next to HENPRI.exe):
 
   HENPRI.pfs.080  - the standard version.
 
-  HENPRI.pfs.081  - alternate version for players of the fan-made
+  HENPRI.pfs.081  - alternate version for users of the fan-made
                     Improvement/Delocalization Patch by Y0Σ1Δ
                     (HENPRI.pfs.069): keeps that patch's English text
                     (credit for that text is theirs).
