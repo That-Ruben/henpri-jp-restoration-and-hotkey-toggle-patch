@@ -24,10 +24,9 @@ Copy ONE file into the game folder (next to HENPRI.exe):
 
   HENPRI.pfs.080  - the standard version.
 
-  HENPRI.pfs.081  - alternate version for users of the fan-made
-                    Improvement/Delocalization Patch by Y0Σ1Δ
-                    (HENPRI.pfs.069): keeps that patch's English text
-                    (credit for that text is theirs).
+  HENPRI.pfs.081  - if you have the fan-made "Improvement/Delocalization
+                    Patch" (HENPRI.pfs.069) installed, use this one
+                    instead. It keeps that patch's English script.
 
 Uninstall: delete the file(s) again. Saves are not affected either way.
 
@@ -52,6 +51,8 @@ Requirements: western release updated to v1.0.2 (GOG/Steam current).
 Credits
 -------
 Patch by That-Ruben.
+The Improvement/Delocalization Patch, whose English script is included
+in HENPRI.pfs.081, is by Y0Σ1Δ.
 
 Issues / contact
 ----------------

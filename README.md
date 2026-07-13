@@ -20,10 +20,10 @@ Grab the released zip (see the pinned links), then copy **one** file into
 the game folder, next to `HENPRI.exe`:
 
 - `HENPRI.pfs.080` — the standard version.
-- `HENPRI.pfs.081` — alternate version for users of the fan-made
+- `HENPRI.pfs.081` — if you have the fan-made
   [Improvement/Delocalization Patch](https://www.reddit.com/r/visualnovels/comments/1uqz332/henpri_hentai_prison_improvement_delocalization)
-  by **Y0Σ1Δ** (`HENPRI.pfs.069`): keeps that patch's English text (credit
-  for that text is theirs).
+  (`HENPRI.pfs.069`) installed, use this one instead. It keeps that patch's
+  English script.
 
 Works with the Steam, GOG and JAST versions (on Steam, install the free
 adult patch first). Uninstall: delete the file again. Saves are unaffected.
@@ -80,3 +80,6 @@ identical inputs produce byte-identical patches.
 ## Credits
 
 Patch by **That-Ruben**. Tools are MIT-licensed (see LICENSE).
+
+The Improvement/Delocalization Patch, whose English script is included in
+`HENPRI.pfs.081`, is by **Y0Σ1Δ**.
