@@ -8,13 +8,15 @@ partially present in the western release; this patch restores the missing
 Japanese text (sourced from the Japanese release, v1.0.7) and re-enables
 the language option.
 
+Should be compatible with Steam, GOG, and Jast versions. 
+(For the Steam version, make sure you have the adult patch installed first)
+
 Features
 --------
 - Japanese added as a 4th language: Config > WINDOW > LANGUAGE
 - Instant JP/EN toggle in-game: press L (works mid-scene, also switches
   the backlog retroactively)
 - Restored Japanese UI art (config screens, loading screen, etc.)
-- The L key is documented on the Config > KEYBOARD screen
 
 Install
 -------
