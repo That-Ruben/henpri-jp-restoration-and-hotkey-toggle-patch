@@ -24,6 +24,10 @@ the game folder, next to `HENPRI.exe`:
 | Plain western release (GOG/Steam, v1.0.2) | `HENPRI.pfs.080` |
 | With the Translation Improvement Patch (`HENPRI.pfs.069`) | `HENPRI.pfs.081` |
 
+The [Improvement/Delocalization Patch](https://www.reddit.com/r/visualnovels/comments/1uqz332/henpri_hentai_prison_improvement_delocalization)
+is by **Y0Σ1Δ** — the `.081` build exists for compatibility with it and
+carries that patch's English text; credit for that text is theirs.
+
 Uninstall: delete the file again. Saves are unaffected.
 
 **Why two builds?** The Artemis engine overrides *whole files*, and script
@@ -77,12 +81,4 @@ identical inputs produce byte-identical patches.
 
 ## Credits
 
-Patch by **That-Ruben**. Game © Qruppo / Shiravune — buy both releases;
-this patch is useless without them, by design.
-
-The `.081` build exists for compatibility with the
-[Improvement/Delocalization Patch](https://www.reddit.com/r/visualnovels/comments/1uqz332/henpri_hentai_prison_improvement_delocalization)
-by **Y0Σ1Δ**, and carries that patch's English text (credit for that text is
-theirs).
-
-Tools are MIT-licensed (see LICENSE).
+Patch by **That-Ruben**. Tools are MIT-licensed (see LICENSE).

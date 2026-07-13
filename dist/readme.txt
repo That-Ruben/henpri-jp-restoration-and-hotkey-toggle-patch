@@ -25,6 +25,10 @@ Copy ONE file into the game folder (next to HENPRI.exe):
                     (HENPRI.pfs.069) installed; this build keeps its
                     improved English text
 
+(The Improvement/Delocalization Patch is by Y0(Sigma)1(Delta); the .081
+build exists for compatibility with it and carries that patch's English
+text - credit for that text is theirs.)
+
 Uninstall: delete the file(s) again. Saves are not affected either way.
 
 Advanced: you can install both. .081 takes priority while present, so
@@ -47,9 +51,7 @@ Requirements: western release updated to v1.0.2 (GOG/Steam current).
 
 Credits
 -------
-Patch by That-Ruben. The .081 build exists for compatibility with the
-Improvement/Delocalization Patch by Y0(Sigma)1(Delta) and carries that
-patch's English text - credit for that text is theirs.
+Patch by That-Ruben.
 
 Issues / contact
 ----------------
