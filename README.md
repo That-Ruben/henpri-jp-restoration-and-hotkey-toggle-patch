@@ -16,7 +16,7 @@ it:
 
 ## Installing the patch
 
-Grab the released zip (see the pinned links), then copy **one** file into
+Grab the [released zip](https://catbox.moe/c/lo9vm6), then copy **one** file into
 the game folder, next to `HENPRI.exe`:
 
 - `HENPRI.pfs.080` — the standard version.
