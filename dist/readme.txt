@@ -47,7 +47,6 @@ builds exist: each carries the English text of its base game.
   it will be overridden the same way. Reach out (see below) and a
   compatible build can be made.
 
-Requirements: western release updated to v1.0.2 (GOG/Steam current).
 
 Credits
 -------
