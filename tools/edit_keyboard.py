@@ -5,7 +5,7 @@ art's own style:
 - add two legend rows in the third column's empty space, on the art's own
   32px row grid (key column x=909, description x=1050, matching the
   RightClick/WheelClick entries above), with the art's separator line style
-  between them (2px, x 880..1295, white at alpha 64)
+  between them (2px, x 902..1295, white at alpha 64)
 
 Outputs to analysis/kb_edit/pc/<lang>/config5/bg_config5.png
 """
@@ -89,7 +89,8 @@ def gradient_cap(im, src_box, dst_box, label, font, radius=6):
 # separator lines every 32px (2px thick, x 880..1295, white alpha 64),
 # entry ink top = separator top + 12, key column x=909, descriptions x=1050
 KEY_X, DESC_X = 909, 1050
-LINE_X0, LINE_X1 = 880, 1295
+LINE_X0, LINE_X1 = 902, 1295   # col3 lines start 7px left of the text;
+                               # cols are separate segments (gap 886..901)
 L_INK_Y, SEP_Y, K_INK_Y = 698, 718, 730
 LINE_FILL = (255, 255, 255, 64)
 
