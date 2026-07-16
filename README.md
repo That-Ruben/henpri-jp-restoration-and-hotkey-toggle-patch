@@ -11,8 +11,12 @@ it:
 
 - **Japanese as a 4th language** in Config → WINDOW → LANGUAGE
 - **Instant JP⇄EN toggle** with the **L** key, mid-scene, backlog included
+- **Dual-language display** with the **K** key — shows the other language
+  in a smaller font above the text (the engine contains this feature
+  unfinished and disabled; the patch completes and enables it). Off by
+  default.
 - Restored authentic Japanese UI art (config screens, loading screen, …)
-- The new hotkey is documented on the Config → KEYBOARD screen
+- The new hotkeys are documented on the Config → KEYBOARD screen
 
 ## Installing the patch
 
