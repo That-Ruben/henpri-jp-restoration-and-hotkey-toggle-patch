@@ -5,6 +5,9 @@ list_windows_<lang>.tbl files.
 - Rewrites p2 (mutual-exclusion lists) on all language buttons
 - Appends a new group ui_config1_ja (shown while the game runs in Japanese),
   cloned from ui_config1_en with the obj/toggle roles swapped.
+- Adds sub01/sub02 font entries for the dual-language display (K key):
+  smaller text above the message text, using the JP-capable main-text font
+  for every entry since the sub slot always holds ja or en.
 """
 import re
 import sys
@@ -12,6 +15,22 @@ import sys
 ORDER = ("en", "cn", "tw", "ja")
 X = {"en": 494, "cn": 700, "tw": 906, "ja": 1112}
 BTNID = {"en": 23, "cn": 24, "tw": 25, "ja": 26}
+
+SUB_ATTRS = ('left=408, top=550, width=800, height=110, align="left", '
+             'color="0xffffff", outline=2, outlinecolor="0x000000", '
+             'spacetop=0, spacemiddle=-8, spacebottom=-4, kerning=-2, '
+             'show="none", indent="indent", hung=1, ruby="font06", '
+             'rubysize=13, rubyoutline=1, prohibit=1, layered=1,},')
+
+
+def sub_block(name, repl=()):
+    rows = []
+    for lang, size in (("ja", 28), ("en", 27), ("tw", 28), ("cn", 28)):
+        attrs = SUB_ATTRS
+        for old, new in repl:
+            attrs = attrs.replace(old, new)
+        rows.append(f'\t\t\t{lang} = {{ face="font06", size={size}, ' + attrs)
+    return [f"\t\t{name} = {{"] + rows + ["\t\t},"]
 
 
 def lang_line(lang, obj):
@@ -65,11 +84,33 @@ def patch_group(lines, gname, current):
     lines[start : end + 1] = out
 
 
+def insert_sub_entries(lines):
+    """Insert sub01/sub02 before every adv01/adv02 font entry (the font
+    sections appear twice per tbl; Lua last-wins, both get the entries)."""
+    eol = "\r\n" if lines[0].endswith("\r\n") else "\n"
+    out = []
+    n1 = n2 = 0
+    for ln in lines:
+        if ln.startswith("\t\tadv01 = {"):
+            out.extend(s + eol for s in sub_block("sub01"))
+            n1 += 1
+        elif ln.startswith("\t\tadv02 = {"):
+            out.extend(s + eol for s in sub_block(
+                "sub02", (("left=408", "left=1200"), ("top=550", "top=2070"),
+                          ("width=800", "width=820"))))
+            n2 += 1
+        out.append(ln)
+    assert n1 >= 1, "no adv01 font entry found"
+    lines[:] = out
+    print(f"  sub01 x{n1}, sub02 x{n2}")
+
+
 def patch_file(path_in, path_out):
     with open(path_in, "r", encoding="utf-8", newline="") as f:
         lines = f.readlines()
     for l in ("en", "cn", "tw"):
         patch_group(lines, f"ui_config1_{l}", current=l)
+    insert_sub_entries(lines)
 
     # build ui_config1_ja from the (patched) en group
     start, end = find_group(lines, "ui_config1_en")

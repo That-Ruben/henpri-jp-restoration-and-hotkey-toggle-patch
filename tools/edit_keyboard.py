@@ -1,7 +1,11 @@
-"""Add the mod's L-key (language toggle) to the keyboard-help images
-(config5/bg_config5.png) for en and ja, in the art's own style:
-- highlight the L keycap with a gradient rebuilt from the S keycap's corners
-- append a legend row under the middle column
+"""Add the mod's hotkeys (L: language toggle, K: dual-language display)
+to the keyboard-help images (config5/bg_config5.png) for en and ja, in the
+art's own style:
+- highlight the K and L keycaps with gradients rebuilt from the S keycap
+- add two legend rows in the third column's empty space, on the art's own
+  32px row grid (key column x=909, description x=1050, matching the
+  RightClick/WheelClick entries above), with the art's separator line style
+  between them (2px, x 880..1295, white at alpha 64)
 
 Outputs to analysis/kb_edit/pc/<lang>/config5/bg_config5.png
 """
@@ -81,14 +85,23 @@ def gradient_cap(im, src_box, dst_box, label, font, radius=6):
            label, font=font, fill=(255, 255, 255, 255))
 
 
-def legend_row(im, x_key, x_desc, y, key, desc, font_key, font_desc,
-               line_x1, key_color=(255, 222, 0, 255)):
+# third-column legend geometry, measured from the art's own entries:
+# separator lines every 32px (2px thick, x 880..1295, white alpha 64),
+# entry ink top = separator top + 12, key column x=909, descriptions x=1050
+KEY_X, DESC_X = 909, 1050
+LINE_X0, LINE_X1 = 880, 1295
+L_INK_Y, SEP_Y, K_INK_Y = 698, 718, 730
+LINE_FILL = (255, 255, 255, 64)
+
+
+def legend_row(im, ink_y, key, desc, font_key, font_desc,
+               key_color=(255, 222, 0, 255)):
     d = ImageDraw.Draw(im)
-    d.text((x_key, y), key, font=font_key, fill=key_color)
-    d.text((x_desc, y), desc, font=font_desc, fill=(255, 255, 255, 255))
-    # underline like other rows
-    d.line([(x_key, y + 26), (line_x1, y + 26)],
-           fill=(255, 255, 255, 255), width=1)
+    bb = d.textbbox((0, 0), key, font=font_key)
+    d.text((KEY_X, ink_y - bb[1]), key, font=font_key, fill=key_color)
+    bb = d.textbbox((0, 0), desc, font=font_desc)
+    d.text((DESC_X, ink_y - bb[1]), desc, font=font_desc,
+           fill=(255, 255, 255, 255))
 
 
 def load(archive, name):
@@ -103,14 +116,18 @@ def load(archive, name):
 CREDIT = "JP patch by That-Ruben"
 
 
-def process(im, out_rel, desc_text, font_path, s_box, l_box):
+def process(im, out_rel, desc_l, desc_k, font_path, s_box, k_box, l_box):
     cap_font = ImageFont.truetype(font_path, 20)
+    gradient_cap(im, s_box, k_box, "K", cap_font)
     gradient_cap(im, s_box, l_box, "L", cap_font)
     fk = ImageFont.truetype(font_path, 17)
     fd = ImageFont.truetype(font_path, 15)
-    legend_row(im, 490, 626, 809, "L", desc_text, fk, fd, 876)
-    # discreet credit, bottom-right
+    legend_row(im, L_INK_Y, "L", desc_l, fk, fd)
+    legend_row(im, K_INK_Y, "K", desc_k, fk, fd)
+    # separator between the two rows, in the art's own line style
     d = ImageDraw.Draw(im)
+    d.rectangle([LINE_X0, SEP_Y, LINE_X1, SEP_Y + 1], fill=LINE_FILL)
+    # discreet credit, bottom-right
     fc = ImageFont.truetype(font_path, 14)
     bb = d.textbbox((0, 0), CREDIT, font=fc)
     d.text((1530 - (bb[2] - bb[0]), 852), CREDIT, font=fc,
@@ -130,13 +147,17 @@ if __name__ == "__main__":
     if len(runs) < 9:
         raise SystemExit("need 9 home-row caps (A..L), got %d" % len(runs))
     s0, s1 = runs[1]
+    k0, k1 = runs[7]
     l0, l1 = runs[8]
     d_mid = sum(runs[2]) // 2
     top, bot = cap_vertical(im_en, d_mid)
     print("cap vertical:", top, bot)
-    s_box, l_box = (s0, top, s1, bot), (l0, top, l1, bot)
+    s_box = (s0, top, s1, bot)
+    k_box, l_box = (k0, top, k1, bot), (l0, top, l1, bot)
     process(im_en, "pc\\en\\config5\\bg_config5.png",
-            "Toggle language (JP/EN)", font, s_box, l_box)
+            "Toggle language (JP/EN)", "Toggle dual language display",
+            font, s_box, k_box, l_box)
     im_ja = load("HENPRI_JP/HENPRI.pfs", "pc\\ja\\config5\\bg_config5.png")
     process(im_ja, "pc\\ja\\config5\\bg_config5.png",
-            "【ADV】言語切替（日本語⇄ENGLISH）", font, s_box, l_box)
+            "【ADV】言語切替（日本語⇄ENGLISH）", "【ADV】二言語表示切替",
+            font, s_box, k_box, l_box)

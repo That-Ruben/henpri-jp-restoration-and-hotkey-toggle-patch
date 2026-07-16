@@ -34,12 +34,18 @@ def main(script_dir, out_pfs, tbl_dir=None, sys_dir=None):
     n_scripts = len(files)
     add_dir_files(files, tbl_dir or os.path.join(AN, "patched_tbl"),
                   "system\\table\\", ".tbl")
+    n_tbls = len(files) - n_scripts
+    assert n_tbls == 4, f"expected 4 language tbls, got {n_tbls}"
     # engine tweaks: L-key language toggle + backlog_max (see patch_system.py)
     sysdir = sys_dir or os.path.join(AN, "patched_sys")
     with open(os.path.join(sysdir, "list_windows.tbl"), "rb") as f:
         files.append(("system\\table\\list_windows.tbl", f.read()))
     with open(os.path.join(sysdir, "lang.lua"), "rb") as f:
         files.append(("system\\msg\\lang.lua", f.read()))
+    with open(os.path.join(sysdir, "message.lua"), "rb") as f:
+        files.append(("system\\msg\\message.lua", f.read()))
+    with open(os.path.join(sysdir, "adv_mw.lua"), "rb") as f:
+        files.append(("system\\extend\\adv_mw.lua", f.read()))
 
     with open(os.path.join(AN, "bt_language_ja.png"), "rb") as f:
         bt_ja = f.read()
