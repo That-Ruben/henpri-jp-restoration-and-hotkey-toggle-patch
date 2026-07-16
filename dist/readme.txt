@@ -1,12 +1,11 @@
 HENPRI - Japanese Language Restoration Patch
 =============================================
-by That-Ruben
+v2 - by That-Ruben
 
-Restores the Japanese text option in the western (Shiravune) release of
-HENPRI / HENTAI PRISON. The Japanese script, UI and fonts are already
-partially present in the western release; this patch restores the missing
-Japanese text (sourced from the Japanese release, v1.0.7) and re-enables
-the language option.
+Makes HENPRI / HENTAI PRISON readable in Japanese, English, or both at
+once. The western (Shiravune) release already contains parts of the
+Japanese version (UI, fonts) but not the text itself; the missing text
+is restored from the Japanese release (v1.0.7).
 
 Should be compatible with Steam, GOG, and Jast versions. 
 (For the Steam version, make sure you have the adult patch installed first)
@@ -16,7 +15,15 @@ Features
 - Japanese added as a 4th language: Config > WINDOW > LANGUAGE
 - Instant JP/EN toggle in-game: press L (works mid-scene, also switches
   the backlog retroactively)
+- Dual language display: press K to also show the other language in a
+  smaller font above the text. The engine contains this feature
+  unfinished and disabled; the patch completes and enables it. It is
+  off by default.
 - Restored Japanese UI art (config screens, loading screen, etc.)
+
+Note: if K does nothing after loading a save made with an older version
+of this patch, it will work after opening the backlog once. 
+Saves made from then on are fine.
 
 Install
 -------
@@ -46,6 +53,11 @@ builds exist: each carries the English text of its base game.
   it will be overridden the same way. Reach out (see below) and a
   compatible build can be made.
 
+
+Version history
+---------------
+v2 (2026-07-16) - dual language display added (K key)
+v1 (2026-07-13) - first release
 
 Credits
 -------
