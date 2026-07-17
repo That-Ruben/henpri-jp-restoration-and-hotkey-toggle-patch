@@ -20,6 +20,10 @@
   analysis/<OUT>/adv_mw.lua         (from base pfs system/extend/adv_mw.lua)
      - the sub layer's font is assigned unconditionally, so the K toggle
        works even though the dual display starts off
+
+  analysis/<OUT>/vsync.lua          (from base pfs system/adv/vsync.lua)
+     - the popup menu bar closes 1s after the mouse leaves it instead of
+       the stock 5s (still longer than the 350ms close animation)
 """
 import os
 import re
@@ -194,8 +198,26 @@ def patch_adv_mw_lua():
     print("patched adv_mw.lua (sub font always assigned)")
 
 
+def patch_vsync_lua():
+    """Shorten the popup menu bar's linger: stock code keeps it open for
+    5000ms after the mouse leaves the dock area (kiyopi mod 2021-09-23);
+    1000ms still absorbs accidental mouse-outs without the long overstay."""
+    src = os.path.join(AN, "extracted_base", "system", "adv", "vsync.lua")
+    with open(src, "r", encoding="utf-8", newline="") as f:
+        t = f.read()
+    old = "\t\t\tif (advtime - oldtime) > 5000 then\r\n"
+    assert t.count(old) == 1, "vsync dock-close anchor not found"
+    t = t.replace(old, "\t\t\tif (advtime - oldtime) > 1000 then"
+                       "\t-- 5000->1000 (language mod)\r\n")
+    with open(os.path.join(OUT, "vsync.lua"), "w",
+              encoding="utf-8", newline="") as f:
+        f.write(t)
+    print("patched vsync.lua (dock close delay 5000 -> 1000 ms)")
+
+
 if __name__ == "__main__":
     patch_tbl()
     patch_lang_lua()
     patch_message_lua()
     patch_adv_mw_lua()
+    patch_vsync_lua()

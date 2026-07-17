@@ -61,6 +61,14 @@ PINS = {
     "pc\\ja\\config1\\bg_config1.png": "HENPRI_JP/HENPRI.pfs",
 }
 
+# Functional art with no language content: identical to en/cn/tw by design,
+# so byte-equality is not evidence of anglicization. The backlog portrait
+# mask in particular must stay the western version — the JP release's is an
+# older format the remaster engine can't use (portraits become invisible).
+EXCLUDES = {
+    "pc\\ja\\blog\\maskblog.png",
+}
+
 
 def main(restore=False):
     west_ja = effective(WEST, "pc\\ja\\")
@@ -73,6 +81,9 @@ def main(restore=False):
              distinct_ok=0, jp_same=0)
     restorable = []
     for path, (arc, name) in sorted(west_ja.items()):
+        if path in EXCLUDES:
+            n["distinct_ok"] += 1
+            continue
         data = read_one(arc, name)
         h = hashlib.md5(data).hexdigest()
         angl = False

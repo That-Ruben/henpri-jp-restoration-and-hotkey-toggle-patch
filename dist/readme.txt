@@ -1,6 +1,6 @@
 HENPRI - Japanese Language Restoration Patch
 =============================================
-v2 - by That-Ruben
+v2.1 - by That-Ruben
 
 Makes HENPRI / HENTAI PRISON readable in Japanese, English, or both at
 once. The western (Shiravune) release already contains parts of the
@@ -56,6 +56,8 @@ builds exist: each carries the English text of its base game.
 
 Version history
 ---------------
+v2.1 (2026-07-17) - added character portraits to Japanese backlog
+                  - adjusted menu bar close delay from 5s to 1s
 v2 (2026-07-16) - dual language display added (K key)
 v1 (2026-07-13) - first release
 

@@ -81,6 +81,27 @@ identical inputs produce byte-identical patches.
   with English ones (detected by hash comparison against the JP release)
 - `edit_keyboard.py` — draws the L key onto the keyboard help screen
 
+## Version history
+
+- **v2.1** (2026-07-17) — added character portraits to the Japanese backlog;
+  adjusted the popup menu bar's close delay from 5s to 1s.
+
+  The portrait bug was an art conflict rather than missing code: the backlog
+  draws each speaker's sprite through a mask image
+  (`pc/<lang>/blog/maskblog.png`). The mask contains no language content, so
+  the patch's asset audit — which treats a `ja` file that is byte-identical
+  to the English one as anglicized — wrongly "restored" the Japanese
+  release's copy of it. That copy is from an older engine generation whose
+  mask format the current engine no longer accepts, so portraits rendered
+  fully transparent whenever the language was set to Japanese. The western
+  release's own mask is now left in place. The Japanese backlog text also
+  needed its layout values updated: the remaster indents backlog text to
+  clear the portrait, but only the shipped languages got the new offsets —
+  the unused `ja` entries still carried the original Japanese release's
+  full-width layout.
+- **v2** (2026-07-16) — dual-language display (K key).
+- **v1** (2026-07-13) — first release.
+
 ## Credits
 
 Patch by **That-Ruben**. Tools are MIT-licensed (see LICENSE).

@@ -8,6 +8,10 @@ list_windows_<lang>.tbl files.
 - Adds sub01/sub02 font entries for the dual-language display (K key):
   smaller text above the message text, using the JP-capable main-text font
   for every entry since the sub slot always holds ja or en.
+- Fixes the ja backlog text geometry: the remaster shifted backlog text
+  right (left=397) to clear the now-solid speaker portrait, but only for
+  the shipped languages; the ja sub-entries kept the old JP layout
+  (left=130) where the portrait was faded out behind the text.
 """
 import re
 import sys
@@ -105,12 +109,31 @@ def insert_sub_entries(lines):
     print(f"  sub01 x{n1}, sub02 x{n2}")
 
 
+# old-JP-layout ja geometry -> remaster geometry (matching cn/tw)
+BLOG_JA_FIX = (
+    ("left=130, top=13, width=600", "left=397, top=0, width=600"),   # logname
+    ("left=130, top=58, width=800", "left=397, top=36, width=800"),  # backlog
+)
+
+
+def fix_backlog_ja(lines):
+    n = 0
+    for i, ln in enumerate(lines):
+        for old, new in BLOG_JA_FIX:
+            if old in ln:
+                lines[i] = ln.replace(old, new)
+                n += 1
+    assert n == 4, f"expected 4 ja backlog-geometry lines, fixed {n}"
+    print(f"  ja backlog geometry x{n}")
+
+
 def patch_file(path_in, path_out):
     with open(path_in, "r", encoding="utf-8", newline="") as f:
         lines = f.readlines()
     for l in ("en", "cn", "tw"):
         patch_group(lines, f"ui_config1_{l}", current=l)
     insert_sub_entries(lines)
+    fix_backlog_ja(lines)
 
     # build ui_config1_ja from the (patched) en group
     start, end = find_group(lines, "ui_config1_en")

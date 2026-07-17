@@ -46,6 +46,8 @@ def main(script_dir, out_pfs, tbl_dir=None, sys_dir=None):
         files.append(("system\\msg\\message.lua", f.read()))
     with open(os.path.join(sysdir, "adv_mw.lua"), "rb") as f:
         files.append(("system\\extend\\adv_mw.lua", f.read()))
+    with open(os.path.join(sysdir, "vsync.lua"), "rb") as f:
+        files.append(("system\\adv\\vsync.lua", f.read()))
 
     with open(os.path.join(AN, "bt_language_ja.png"), "rb") as f:
         bt_ja = f.read()
