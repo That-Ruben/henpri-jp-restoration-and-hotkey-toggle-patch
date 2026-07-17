@@ -35,7 +35,15 @@ Copy ONE file into the game folder (next to HENPRI.exe):
                     Patch" (HENPRI.pfs.069) installed, use this one
                     instead. It keeps that patch's English script.
 
-Uninstall: delete the file(s) again. Saves are not affected either way.
+Uninstall: delete the file(s) again.
+
+Note before uninstalling: if the dual language display (K) is enabled,
+disable it and save again before removing the patch. The Artemis engine
+bakes the message-window layer tree into the save file and restores it
+verbatim on load, so if you saved with dual language enabled, it will
+still be there even if you uninstalled the patch. (To fix such a save
+afterwards: reinstall the patch, load the save, advance one line, save
+again.)
 
 Advanced: you can install both. .081 takes priority while present, so
 deleting/restoring .081 switches between the two English translations
